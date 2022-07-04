@@ -8,25 +8,6 @@ const authRouter = require('./routes/api/auth')
 const userRouter = require('./routes/api/users')
 const contactsRouter = require('./routes/api/contacts')
 
-const tempDir = path.join(__dirname, 'temp')
-
-const multerConfig = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, tempDir)
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname)
-  },
-  limits: {
-    fileSize: 2048
-  }
-})
-
-const upload = multer({
-  storage: multerConfig
-})
-
-
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
