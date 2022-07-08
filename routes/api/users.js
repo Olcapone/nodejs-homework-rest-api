@@ -14,6 +14,4 @@ router.patch('/avatars', auth, upload.single('avatar'), ctrl.uploadAvatar)
 
 router.patch('/', auth, validation(updateContactStatusJoiSchema), ctrl.updateSubscription)
 
-
-
 module.exports = router

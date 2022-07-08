@@ -35,13 +35,14 @@ const register = async (req, res) => {
       }
 
       await User.create(newUser)
-        .then(({email, avatarURL, subscription, createdAt, verificationToken}) => res.status(201).json({
-            message: 'contact create', 
-            code: 201,
-            status: 'success',
-            data: {
-              user: { email, avatarURL, subscription, verificationToken, createdAt }
-            }
+        .then(({email, avatarURL, subscription, createdAt, verificationToken}) => res.status(201)
+          .json({
+              message: 'contact create', 
+              code: 201,
+              status: 'success',
+              data: {
+                user: { email, avatarURL, subscription, verificationToken, createdAt }
+              }
           })
         )
         .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'falure' }))
