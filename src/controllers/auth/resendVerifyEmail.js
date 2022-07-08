@@ -5,7 +5,7 @@ const { sendEmail } = require('../../helpers')
 const { verifyTemplate } = require('../../template')
 
 
-const reVerifyEmail = async(req, res, next) => {
+const resendVerifyEmail = async(req, res, next) => {
   const { email, verificationToken } = req.body
 
   const user = await User.findOne({verificationToken})
@@ -25,4 +25,4 @@ const reVerifyEmail = async(req, res, next) => {
   res.status(201).json({message: 'Verification message was sent'})
 }
 
-module.exports = reVerifyEmail
+module.exports = resendVerifyEmail

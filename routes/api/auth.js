@@ -15,7 +15,7 @@ router.post('/login', validation(joiLoginSchema), ctrl.login)
 
 router.get('/verify/:verificationToken', ctrl.verifyEmail)
 
-router.post('/verify', validation(reVerifyMailJoiSchema), ctrl.reVerifyEmail)
+router.post('/verify', validation(reVerifyMailJoiSchema), ctrl.resendVerifyEmail)
 
 router.get('/logout', auth, ctrl.logout)
 

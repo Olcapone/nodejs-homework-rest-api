@@ -1,13 +1,13 @@
 const register = require('./register')
 const login = require('./login')
 const verifyEmail = require('./verifyEmail')
-const reVerifyEmail = require('./reVerifyEmail')
+const resendVerifyEmail = require('./resendVerifyEmail')
 const logout = require('./logout')
 
 module.exports = {
   register,
   login,
   verifyEmail,
-  reVerifyEmail,
+  resendVerifyEmail,
   logout
 }
