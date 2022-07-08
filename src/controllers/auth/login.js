@@ -8,7 +8,7 @@ const login = async (req, res) => {
   try {
     const user = await User.findOne({email})
         
-    if(!user || !user.comparePassword(password)) {
+    if(!user || !user.verify || !user.comparePassword(password)) {
       res.status(400).json({ message: 'Email or password is wrong', code: 400, status: 'falure' })
       throw new Unauthorized()
     }
