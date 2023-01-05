@@ -28,11 +28,11 @@ const userSchema = Schema({
     type: String,
     default: null,
   },
-  verify: {
+  verifyStatus: {
     type: Boolean,
     default: false,
   },
-  verificationToken: {
+  verificationCode: {
     type: String,
     required: [true, 'Verify token is required'],
   }

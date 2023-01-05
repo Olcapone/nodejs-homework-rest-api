@@ -1,6 +1,6 @@
 const { Contact } = require('../../../models')
 
-const addContact = async (req, res, next) => {
+const addContact = async (req, res) => {
   const { body, user } = req
 
     await Contact.create({...body, owner: user._id})
@@ -10,7 +10,7 @@ const addContact = async (req, res, next) => {
         code: 201,
         status: 'success'
       }))
-      .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'falure' }))
+      .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'failure' }))
 }
 
 module.exports = addContact
