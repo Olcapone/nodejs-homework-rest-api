@@ -2,17 +2,16 @@ module.exports = {
   get: {
     tags: ["users"],
     description: "",
-    operationId: "get-users", // unique operation id.
+    operationId: "get-users",
     parameters: [],
 
     responses: {
-
       200: {
-        description: " response desc",
+        description: "",
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/get-users",
+              $ref: "#/components/schemas/usersSchema",
             },
           },
         },

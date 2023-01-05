@@ -6,6 +6,7 @@ const updateStatus = async (req, res) => {
 
   await Contact.findByIdAndUpdate(contactId, {favorite}, { new: true})
     .then(data => {
+      console.log(data);
       if(!data) { res.status(404).json({ message: 'Not found', status: 'failure' }) }
 
       else {
@@ -17,6 +18,6 @@ const updateStatus = async (req, res) => {
         })
     }
     })
-    .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'falure' }))}
+    .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'failure' }))}
 
 module.exports = updateStatus

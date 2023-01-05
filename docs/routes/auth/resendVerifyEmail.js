@@ -2,26 +2,26 @@ module.exports = {
   post: {
     tags: ["auth"],
     description: "",
-    operationId: "login", // unique operation id.
+    operationId: "resend-verify-email",
     parameters: [{
       "name": "user",
       "in": "body",
       "schema": {
-        "$ref": "#/components/schemas/loginSchema",
+        "$ref": "#/components/schemas/resendEmailSchema",
       },
       "required": true,
       "description": "",
     },],
 
     responses: {
-      200: {
-        description: "Success",
+      201: {
+        description: "Verification message was sent",
       },
       400: {
-        description: "Bad Request",
+        description: "Verification has already been passed",
       },
-      403: {
-        description: "Email or password is wrong",
+      404: {
+        description: "User not found",
       },
     },
   },

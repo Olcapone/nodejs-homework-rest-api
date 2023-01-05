@@ -1,21 +1,25 @@
 module.exports = {
   get: {
     tags: ["auth"],
-    description: "logout desc",
-    operationId: "logout", // unique operation id.
-    parameters: [],
+    description: "",
+    operationId: "logout",
+    parameters: [
+      {
+        "name": "id",
+        "in": "query",
+        "required": true,
+        "schema": {
+          type: "string"
+        }
+      }
+    ],
 
     responses: {
-
-      200: {
-        description: " response desc",
-        content: {
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/auth-logout",
-            },
-          },
-        },
+      204: {
+        description: "Success",
+      },
+      401: {
+        description: "Not authorized",
       },
     },
   },

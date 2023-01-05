@@ -1,9 +1,19 @@
 module.exports = {
   get: {
     tags: ["contacts"],
-    description: "Get contact desc",
-    operationId: "get-contact", // unique operation id.
-    parameters: [],
+    description: "",
+    operationId: "get-contact",
+    parameters: [
+      {
+        "name": "contactId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          type: "string"
+        }
+      },
+    ],
 
     responses: {
       200: {
@@ -11,48 +21,101 @@ module.exports = {
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/get-contact",
+              $ref: "#/components/schemas/contactResponseSchema",
             },
           },
         },
       },
+      404: {
+        description: "Contact with id=${contactId} not found",
+      }
     },
   },
   put: {
     tags: ["contacts"],
-    description: "update contact desc",
-    operationId: "update-contact", // unique operation id.
-    parameters: [],
+    description: "",
+    operationId: "update-contact",
+    parameters: [
+      {
+        "name": "contactId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          type: "string"
+        }
+      },
+      {
+        "name": "name",
+        "in": "query",
+        "schema": {
+          type: "string"
+        }
+      },
+      {
+        "name": "email",
+        "in": "query",
+        "schema": {
+          type: "string"
+        }
+      },
+      {
+        "name": "phone",
+        "in": "query",
+        "schema": {
+          type: "string"
+        }
+      },
+    ],
 
     responses: {
       200: {
-        description: "response desc",
+        description: "",
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/update-contact",
+              $ref: "#/components/schemas/contactResponseSchema",
             },
           },
         },
       },
+      404: {
+        description: "Not found",
+      },
+      400: {
+        description: "Error message",
+      }
     },
   },
   delete: {
     tags: ["contacts"],
     description: "",
-    operationId: "delete-contact", // unique operation id.
-    parameters: [],
+    operationId: "delete-contact",
+    parameters: [
+      {
+        "name": "contactId",
+        "in": "path",
+        "description": "",
+        "required": true,
+        "schema": {
+          type: "string"
+        }
+      },
+    ],
 
     responses: {
       200: {
-        description: "response desc",
+        description: "",
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/delete-contact",
+              $ref: "#/components/schemas/contactResponseSchema",
             },
           },
         },
+      },
+      404: {
+        description: "Not found",
       },
     },
   },

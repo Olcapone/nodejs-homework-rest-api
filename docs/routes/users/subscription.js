@@ -2,20 +2,26 @@ module.exports = {
   patch: {
     tags: ["users"],
     description: "",
-    operationId: "update-subscription", // unique operation id.
+    operationId: "update-subscription",
     parameters: [],
 
-    responses: {
+    requestBody: {
+      description: "",
+      content: {
+        "application/json": {
+          schema: {
+            $ref: "#/components/schemas/updateSubscribeRequestSchema",
+          }
+        }
+      }
+    },
 
+    responses: {
       200: {
-        description: " response desc",
-        content: {
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/update-user-subscription",
-            },
-          },
-        },
+        description: "Subscription update",
+      },
+      400: {
+        description: "Error message",
       },
     },
   },

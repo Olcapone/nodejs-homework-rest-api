@@ -2,20 +2,29 @@ module.exports = {
   patch: {
     tags: ["users"],
     description: "",
-    operationId: "update-avatar", // unique operation id.
-    parameters: [],
+    operationId: "update-avatar",
+    parameters: [
+      {
+        "name": "id",
+        "in": "query",
+        "required": true,
+        "schema": {
+          type: "string"
+        }
+      },
+      {
+        "name": "file",
+        "in": "query",
+        "required": true,
+        "schema": {
+          type: "file"
+        }
+      },
+    ],
 
     responses: {
-
-      200: {
-        description: " response desc",
-        content: {
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/update-avatar",
-            },
-          },
-        },
+      201: {
+        description: "success",
       },
     },
   },

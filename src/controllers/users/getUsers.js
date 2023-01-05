@@ -21,11 +21,9 @@ const getUsers = async(req, res) => {
   )
 
   res.json({
+    body: data,
     status: 'success',
-    code: 200,
-    data: {
-      users: data
-    }
+    code: 200
   })
 }
 

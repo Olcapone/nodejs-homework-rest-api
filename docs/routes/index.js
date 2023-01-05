@@ -1,14 +1,14 @@
 const contacts = require('./contacts/contacts');
 const contact = require('./contacts/contact');
-const contactStatus = require('./contacts/contact-status');
+const contactStatus = require('./contacts/contactStatus');
 const users = require('./users/all');
 const user = require('./users/current');
 const userAvatar = require('./users/avatar');
 const userSubscription = require('./users/subscription');
 const sign = require('./auth/sign');
 const login = require('./auth/login');
-const verify = require('./auth/verify');
-const verificationToken = require('./auth/verificationToken');
+const verifyEmail = require('./auth/resendVerifyEmail');
+const verificationCode = require('./auth/verifyEmail');
 const logout = require('./auth/logout');
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
     '/api/users/avatars':{
       ...userAvatar,
     },
-    '/api/users/':{
+    '/api/users':{
       ...userSubscription,
     },
     '/api/auth/signup':{
@@ -41,10 +41,10 @@ module.exports = {
       ...login,
     },
     '/api/auth/verify':{
-      ...verify,
+      ...verifyEmail,
     },
-    '/api/auth/verify/{verificationToken}':{
-      ...verificationToken,
+    '/api/auth/verify/{verificationCode}':{
+      ...verificationCode,
     },
     '/api/auth/logout':{
       ...logout,

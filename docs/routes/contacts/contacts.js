@@ -1,18 +1,18 @@
+
 module.exports = {
   get: {
     tags: ["contacts"],
     description: "",
-    operationId: "get-contacts", // unique operation id.
+    operationId: "get-contacts",
     parameters: [],
 
     responses: {
-
       200: {
         description: "",
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/contacts",
+              $ref: "#/components/schemas/contactsSchema",
             },
           },
         },
@@ -21,18 +21,39 @@ module.exports = {
   },
   post: {
     tags: ["contacts"],
-    description: "Post contacts desc",
-    operationId: "create-contact", // unique operation id.
+    description: "",
+    operationId: "new-contact",
     parameters: [],
 
-    responses: {
+    requestBody: {
+      description: "",
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            $ref: "#/components/schemas/addContactSchema",
+          }
+        }
+      }
+    },
 
-      200: {
-        description: " response desc",
+    responses: {
+      201: {
+        description: "contact create",
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/post-contacts",
+              $ref: "#/components/schemas/contactResponseSchema",
+            },
+          },
+        },
+      },
+      400: {
+        description: "error message",
+        content: {
+          "application/json": {
+            schema: {
+              $ref: "#/components/schemas/Error",
             },
           },
         },

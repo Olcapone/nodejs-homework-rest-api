@@ -8,7 +8,7 @@ const deleteContact = async (req, res) => {
       if(!data) { return res.status(404).json({ message: 'Not found', status: 'failure' }) }
 
       else {
-        return res.status(200).json({ message: 'contact deleted', status: 'success', data: data})
+        return res.status(200).json({  body: data, message: 'contact deleted', status: 'success'})
       }
     })    
 }

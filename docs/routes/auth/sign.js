@@ -3,7 +3,7 @@ module.exports = {
     tags: ["auth"],
     description: "",
     operationId: "sign",
-    parameters: [ {
+    parameters: [{
       "name": "user",
       "in": "body",
       "schema": {
@@ -15,13 +15,13 @@ module.exports = {
 
     responses: {
       201: {
-        description: "contact create",
+        description: "Contact create",
       },
       400: {
-        description: "check your data",
+        description: "Bad request",
       },
       409: {
-        description: "cmail in use",
+        description: "Email in use",
       },
     },
   },
