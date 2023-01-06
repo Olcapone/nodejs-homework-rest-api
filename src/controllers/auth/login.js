@@ -1,5 +1,4 @@
 const { User } = require('../../../models')
-const { Unauthorized } = require('http-errors')
 const jwt = require('jsonwebtoken')
 
 const login = async (req, res) => {
@@ -8,19 +7,19 @@ const login = async (req, res) => {
   try {
     const user = await User.findOne({email})
         
-    if(!user || !user.verify || !user.comparePassword(password)) {
-      res.status(400).json({ message: 'Email or password is wrong', code: 400, status: 'falure' })
-      throw new Unauthorized()
+    if(!user || !user.verifyStatus || !user.comparePassword(password)) {
+      res.status(403).json({ message: 'Email or password is wrong', code: 400, status: 'failure' })
     }
     else {
-      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h'})
+      const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '24h'})
 
       await User.findByIdAndUpdate(user._id, {token})
-      .then(_ => res.status(200).json({ code: 200, status: 'success', data: { token }}))
+      .then(_ => res.json({ code: 200, status: 'success', data: { token }}))
       } 
   } catch (err) {
-      res.status(400).json({ message: err.message, code: 400, status: 'falure' })
-  }  
+      res.status(400).json({ message: err.message, code: 400, status: 'failure' })
+
+  }
 }
 
 module.exports = login

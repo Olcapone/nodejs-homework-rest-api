@@ -1,0 +1,28 @@
+module.exports = {
+  post: {
+    tags: ["auth"],
+    description: "",
+    operationId: "login", // unique operation id.
+    parameters: [{
+      "name": "user",
+      "in": "body",
+      "schema": {
+        "$ref": "#/components/schemas/loginSchema",
+      },
+      "required": true,
+      "description": "",
+    },],
+
+    responses: {
+      200: {
+        description: "Success",
+      },
+      400: {
+        description: "Bad Request",
+      },
+      403: {
+        description: "Email or password is wrong",
+      },
+    },
+  },
+};

@@ -13,7 +13,7 @@ router.post('/signup', validation(joiRegisterSchema), ctrl.register)
 
 router.post('/login', validation(joiLoginSchema), ctrl.login)
 
-router.get('/verify/:verificationToken', ctrl.verifyEmail)
+router.get('/verify/:verificationCode', ctrl.verifyEmail)
 
 router.post('/verify', validation(reVerifyMailJoiSchema), ctrl.resendVerifyEmail)
 

@@ -14,7 +14,7 @@ const register = async (req, res) => {
   const user = await User.findOne({email})
 
     if(user) {
-      res.status(409).json({ message: 'Email in use', code: 409, status: 'falure' })
+      res.status(409).json({ message: 'Email in use', code: 409, status: 'failure' })
       throw new Conflict()
     }
 
@@ -23,31 +23,28 @@ const register = async (req, res) => {
     }
 
     else {
-      const verificationToken = v4()
+      const verificationCode = v4()
       const defaultUrl = gravatar.url(email)
       const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
       const newUser = {
         name,
         email,
-        verificationToken,
+        verificationCode,
         avatarURL: avatar || defaultUrl,
         password: hashPassword,
       }
 
       await User.create(newUser)
-        .then(({email, avatarURL, subscription, createdAt, verificationToken}) => res.status(201)
+        .then(() => res.status(201)
           .json({
-              message: 'contact create', 
+              message: `Authorization was successful: ${name}`,
               code: 201,
               status: 'success',
-              data: {
-                user: { email, avatarURL, subscription, verificationToken, createdAt }
-              }
           })
         )
-        .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'falure' }))
+        .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'failure' }))
         
-      const verifyMessage = verifyTemplate(email, verificationToken)
+      const verifyMessage = verifyTemplate(email, verificationCode)
       await sendEmail(verifyMessage)
     }
 }

@@ -7,7 +7,7 @@ const getList = async (req, res) => {
   const queryObject = favorite ? { favorite: favorite } : {}
 
   const data = await Contact.find(queryObject, '-__v', {skip, limit: Number(limit)}).sort({[sortBy]: sortRule})
-  return res.json({ status: 'success', code: 200, contacts: data })
+  return res.json({ body: data, status: 'success', code: 200 })
 }
 
 module.exports = getList

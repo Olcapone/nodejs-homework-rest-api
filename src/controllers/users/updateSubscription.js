@@ -9,14 +9,13 @@ const updateSubscription = async(req, res) => {
 
       else {
         return res.status(200).json({
-          body: data,
           message: 'subscription update', 
           code: 200,
           status: 'success'
         })
     }
     })
-    .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'falure' }))
+    .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'failure' }))
 }
 
 module.exports = updateSubscription
