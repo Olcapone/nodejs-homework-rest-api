@@ -14,7 +14,7 @@ const login = async (req, res) => {
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '24h'})
 
       await User.findByIdAndUpdate(user._id, {token})
-      .then(_ => res.json({ code: 200, status: 'success', data: { token }}))
+      .then(_ => res.json({ body: { token, user: {name: user.name, email} }, code: 200, status: 'success', }))
       } 
   } catch (err) {
       res.status(400).json({ message: err.message, code: 400, status: 'failure' })

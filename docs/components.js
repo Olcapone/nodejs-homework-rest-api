@@ -105,6 +105,31 @@ module.exports = {
         },
       },
 
+      loginResponseSchema: {
+        type: "object",
+        properties: {
+          body: {
+            type: "object",
+            properties: {
+              token: { type: "string" },
+              user: {
+                type: "object",
+                properties: {
+                  email: {
+                    type: "string",
+                  },
+                  name: {
+                    type: "string",
+                  },
+                },
+              }
+            }
+          },
+          code: { type: "number" },
+          status: { type: "string" },
+        }
+      },
+
       resendEmailSchema: {
         type: "object",
         properties: {

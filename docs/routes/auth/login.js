@@ -16,6 +16,13 @@ module.exports = {
     responses: {
       200: {
         description: "Success",
+        content: {
+          "application/json": {
+            schema: {
+              $ref: "#/components/schemas/loginResponseSchema",
+            },
+          },
+        },
       },
       400: {
         description: "Bad Request",
