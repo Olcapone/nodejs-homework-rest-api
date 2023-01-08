@@ -61,6 +61,7 @@ const userResponseSchema = {
 }
 
 const currentUserResponseSchema = {
+  name: { type: "string" },
   email: { type: "string" },
   subscription: { type: "string", example:  "starter"},
 }
