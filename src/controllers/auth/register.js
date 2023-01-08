@@ -44,7 +44,7 @@ const register = async (req, res) => {
         .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'failure' }))
         
       const verifyMessage = verifyTemplate(name, email, verificationCode)
-      await sendEmail(verifyMessage, verificationCode, email)
+      await sendEmail(verifyMessage)
 
       //TODO delete when sengrid will fix
 
