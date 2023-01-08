@@ -5,15 +5,19 @@ const bcrypt = require('bcryptjs')
 const { subscriptionType } = require('./constants')
 
 const userSchema = Schema({
-  password: {
+  name: {
     type: String,
-    min: [6, 'Password must has min 6 symbol'],
-    required: [true, 'Password is required'],
+    required: [true, 'Name is required'],
   },
   email: {
     type: String,
     required: [true, 'Email is required'],
     unique: true,
+  },
+  password: {
+    type: String,
+    min: [6, 'Password must has min 6 symbol'],
+    required: [true, 'Password is required'],
   },
   avatarURL: {
     type: String,

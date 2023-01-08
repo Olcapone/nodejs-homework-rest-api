@@ -61,6 +61,7 @@ const userResponseSchema = {
 }
 
 const currentUserResponseSchema = {
+  name: { type: "string" },
   email: { type: "string" },
   subscription: { type: "string", example:  "starter"},
 }
@@ -103,6 +104,31 @@ module.exports = {
             example: "",
           },
         },
+      },
+
+      loginResponseSchema: {
+        type: "object",
+        properties: {
+          body: {
+            type: "object",
+            properties: {
+              token: { type: "string" },
+              user: {
+                type: "object",
+                properties: {
+                  email: {
+                    type: "string",
+                  },
+                  name: {
+                    type: "string",
+                  },
+                },
+              }
+            }
+          },
+          code: { type: "number" },
+          status: { type: "string" },
+        }
       },
 
       resendEmailSchema: {
