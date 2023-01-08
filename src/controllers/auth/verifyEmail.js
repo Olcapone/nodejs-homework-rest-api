@@ -8,7 +8,7 @@ const verifyEmail = async(req, res) => {
   if(!user) {
     res.status(404).json({message: 'User not found'})
   }
-  await User.findByIdAndUpdate(user._id, {verify: true, verificationCode})
+  await User.findByIdAndUpdate(user._id, {verifyStatus: true, verificationCode})
   res.status(200).json({message: 'Verification successful'})
 }
 

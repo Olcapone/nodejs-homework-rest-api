@@ -7,7 +7,6 @@ const { User } = require('../../../models')
 const { sendEmail } = require('../../helpers')
 const { verifyTemplate } = require('../../template')
 
-
 const register = async (req, res) => {
   const { name, email, password, avatar } = req.body
  
@@ -44,8 +43,13 @@ const register = async (req, res) => {
         )
         .catch(err => res.status(400).json({ message: err.message, code: 400, status: 'failure' }))
         
-      const verifyMessage = verifyTemplate(email, verificationCode)
+      const verifyMessage = verifyTemplate(name, email, verificationCode)
       await sendEmail(verifyMessage)
+
+      //TODO delete when sengrid will fix
+
+      const user = await User.findOne({verificationCode})
+      await User.findByIdAndUpdate(user._id, {verifyStatus: true, verificationCode})
     }
 }
 
