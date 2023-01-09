@@ -1,5 +1,5 @@
 module.exports = {
-  get: {
+  post: {
     tags: ["auth"],
     description: "",
     operationId: "logout",

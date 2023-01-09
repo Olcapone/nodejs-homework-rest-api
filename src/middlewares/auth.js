@@ -9,8 +9,7 @@ const auth = async(req, res, next) => {
 
     try {
       if(bearer !== 'Bearer') {
-        res.status(401).json({ message: 'Not authorized', code: 401, status: 'falure' })
-        throw new Unauthorized()
+        res.status(401).json({ message: 'Not authorized', code: 401, status: 'failure' })
       }
       const {id} = jwt.verify(token, process.env.SECRET_KEY)
       await User.findById(id)

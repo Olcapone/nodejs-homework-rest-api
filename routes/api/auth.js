@@ -1,6 +1,6 @@
 const express = require('express')
 const {auth: ctrl} = require('../../src/controllers')
-const {auth, validation} = require('../../src/middlewares')
+const {validation} = require('../../src/middlewares')
 const {
   joiRegisterSchema,
   joiLoginSchema,
@@ -17,6 +17,6 @@ router.get('/verify/:verificationCode', ctrl.verifyEmail)
 
 router.post('/verify', validation(reVerifyMailJoiSchema), ctrl.resendVerifyEmail)
 
-router.get('/logout', auth, ctrl.logout)
+router.post('/logout', ctrl.logout)
 
 module.exports = router
