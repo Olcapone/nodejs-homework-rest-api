@@ -12,13 +12,9 @@ const login = async (req, res) => {
     }
     else {
       const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '24h'})
-
-      await User.findByIdAndUpdate(user._id, {token})
-      .then(_ => res.json({ body: { token, user: {name: user.name, email, id: user._id} }, code: 200, status: 'success', }))
-      } 
+      res.json({ body: { token, user: { name: user.name, email, id: user._id }}, code: 200, status: 'success' })}
   } catch (err) {
       res.status(400).json({ message: err.message, code: 400, status: 'failure' })
-
   }
 }
 

@@ -52,7 +52,7 @@ userSchema.methods.comparePassword = function(password){
 
 const User = model('user', userSchema)
 
-const joiRegisterSchema = Joi.object({
+const joiSignUpSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(100),
@@ -91,7 +91,7 @@ const reVerifyMailJoiSchema = Joi.object().keys({
 
 module.exports = {
   User,
-  joiRegisterSchema,
+  joiSignUpSchema,
   joiLoginSchema,
   updateContactStatusJoiSchema,
   updateSubscriptionJoiSchema,

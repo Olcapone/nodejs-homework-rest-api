@@ -7,7 +7,7 @@ const { User } = require('../../../models')
 const { sendEmail } = require('../../helpers')
 const { verifyTemplate } = require('../../template')
 
-const register = async (req, res) => {
+const signUp = async (req, res) => {
   const { name, email, password, avatar } = req.body
  
   const user = await User.findOne({email})
@@ -53,4 +53,4 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = register
+module.exports = signUp

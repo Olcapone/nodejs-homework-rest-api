@@ -9,16 +9,16 @@ const {
   updateContactStatusJoiSchema
 } = require('../../models/contactSchema')
 
-router.get('/', ctrl.getAll)
+router.get('/', auth, ctrl.getAll)
 
-router.get('/:contactId', ctrl.getContact)
+//router.get('/:contactId', ctrl.getContact)
 
 router.post('/', auth, validation(addContactJoiSchema), ctrl.addContact)
 
-router.put('/:contactId', validation(updateContactJoiSchema), ctrl.updateContact)
+router.put('/:contactId', auth, validation(updateContactJoiSchema), ctrl.updateContact)
 
-router.patch('/:contactId/favorite', validation(updateContactStatusJoiSchema), ctrl.updateStatus)
+router.patch('/:contactId/favorite', auth, validation(updateContactStatusJoiSchema), ctrl.updateStatus)
 
-router.delete('/:contactId', ctrl.deleteContact)
+router.delete('/:contactId', auth, ctrl.deleteContact)
 
 module.exports = router

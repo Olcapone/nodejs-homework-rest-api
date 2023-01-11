@@ -2,14 +2,14 @@ const express = require('express')
 const {auth: ctrl} = require('../../src/controllers')
 const {validation} = require('../../src/middlewares')
 const {
-  joiRegisterSchema,
+  joiSignUpSchema,
   joiLoginSchema,
   reVerifyMailJoiSchema
 } = require('../../models/authSchema')
 
 const router = express.Router()
 
-router.post('/signup', validation(joiRegisterSchema), ctrl.register)
+router.post('/signup', validation(joiSignUpSchema), ctrl.signUp)
 
 router.post('/login', validation(joiLoginSchema), ctrl.login)
 
