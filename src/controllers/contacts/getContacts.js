@@ -1,14 +1,14 @@
 const { Contact, User} = require('../../../models')
+const {parseToken} = require("../../helpers");
 
-const getList = async (req, res) => {
+const getContacts = async (req, res) => {
   const {page = 1, limit = 20, favorite, sortBy = 'name', sortRule = 1} = req.query
   const skip = (page - 1)* limit
-  const {authorization = ''} = req.headers
-  const [bearer, token] = authorization.split(' ')
+  const {id, bearer} = parseToken(req.headers)
 
   const queryObject = favorite ? { favorite: favorite } : {}
 
-  console.log(token)
+  console.log(id)
 
   const data = await User.aggregate(
     [
@@ -35,4 +35,4 @@ const getList = async (req, res) => {
   return res.json({ body: data ? data.usersContacts : [], status: 'success', code: 200 })
 }
 
-module.exports = getList
+module.exports = getContacts

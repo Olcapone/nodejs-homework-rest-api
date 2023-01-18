@@ -2,6 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 const swaggerUI = require("swagger-ui-express")
+require('dotenv').config()
 
 const docs = require('./docs')
 const authRouter = require('./routes/api/auth')
@@ -9,7 +10,7 @@ const userRouter = require('./routes/api/users')
 const contactsRouter = require('./routes/api/contacts')
 
 const app = express()
-
+const PORT = process.env.PORT || 8081
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
 app.use(logger(formatsLogger))
@@ -29,5 +30,7 @@ app.use((req, res) => {
 app.use((err, req, res) => {
   res.status(500).json({ message: err.message })
 })
+
+app.listen(PORT)
 
 module.exports = {app}

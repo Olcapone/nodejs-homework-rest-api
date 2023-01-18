@@ -9,7 +9,7 @@ const auth = async(req, res, next) => {
 
     try {
       if(bearer !== 'Bearer') {
-        res.status(401).json({ message: 'Not authorized', code: 401, status: 'failure' })
+        res.status(401).json({ message: 'Invalid token', code: 401, status: 'failure' })
       }
       const {id} = jwt.verify(token, process.env.SECRET_KEY, function(err) {
         if (err) throw new Unauthorized('Not authorized')
@@ -19,7 +19,7 @@ const auth = async(req, res, next) => {
       await User.findById(id)
         .then(data => {
           if(!data) {
-            throw new Unauthorized('Not authorized')
+            throw new Unauthorized('Not found user')
           }
           req.user = data
           next()
@@ -32,7 +32,6 @@ const auth = async(req, res, next) => {
       }
       next(err)
   }
-
 }
 
 module.exports = auth

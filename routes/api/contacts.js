@@ -9,7 +9,7 @@ const {
   updateContactStatusJoiSchema
 } = require('../../models/contactSchema')
 
-router.get('/', auth, ctrl.getAll)
+router.get('/', auth, ctrl.getContacts)
 
 //router.get('/:contactId', ctrl.getContact)
 
